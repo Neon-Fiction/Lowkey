@@ -214,16 +214,26 @@
         <button type="submit" style="background-color: #FFFFFF; color: A5A5A5; position: absolute; top: 20px; left: 625px; width: 75px; height: 25px;">About</button>
     </form>
     <!-- Comment box -->
- 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Site</title>
     <link rel="stylesheet" type="text/css" href="https://www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
     <style>
-        /* Custom CSS to change text color to white */
+        /* Custom CSS to change text color to white for comments */
         #HCB_comment_box, #HCB_comment_box * {
             color: white !important;
+        }
+
+        /* Ensure text area and input fields are visible */
+        #HCB_comment_box textarea, 
+        #HCB_comment_box input[type="text"], 
+        #HCB_comment_box input[type="email"], 
+        #HCB_comment_box input[type="url"], 
+        #HCB_comment_box input[type="password"] {
+            color: black !important; /* Text color inside the input field */
+            background-color: #f0f0f0 !important; /* Light background color for the input field */
+            border: 1px solid #ccc !important; /* Light border color for visibility */
         }
     </style>
 </head>
@@ -242,5 +252,9 @@
         })(); 
         /*-->*/ 
     </script>
+</body>
+</html>
+
+
 </body>
 </html>
