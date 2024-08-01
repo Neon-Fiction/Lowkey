@@ -1,17 +1,24 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta name="google-adsense-account" content="ca-pub-5218777953158474">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=400, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spacorns :)</title>
+    
+    <!-- Google Adsense Meta -->
+    <meta name="google-adsense-account" content="ca-pub-5218777953158474">
+    
+    <!-- Internal CSS -->
     <style>
-        /* CSS styles go here */
+        /* General styles for the page */
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #FFFFFF;
+            background-color: #FFFFFF; /* Change to your desired background color */
         }
+
+        /* Banner styles */
         .banner {
             background-color: #DDDDDD; /* Banner background color */
             color: black;              /* Banner text color */
@@ -22,145 +29,163 @@
             top: 0;                    /* Stick to the top */
             left: 0;                   /* Align to the left */
         }
+
         .banner h1 {
             margin: 0;                /* Remove default margin */
         }
+
+        /* Content styles */
         .content {
             margin: 20px;
+            color: white; /* Change text color to white */
         }
+
         .content h1, .content h2 {
             text-align: left;
         }
+
         .content p {
             margin: 20px 0;
             text-align: left;
             font-size: 130%;
         }
+
+        /* Slider styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Container for the slider */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Slider wrapper */
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Slider */
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Slider navigation */
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .slider-nav a {
+            width: 15px;
+            height: 15px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: block;
+            text-indent: -9999px;
+            cursor: pointer;
+        }
+
+        .slider-nav a.active {
+            background-color: #000;
+        }
+
+        /* Custom CSS for comment box */
+        #HCB_comment_box, #HCB_comment_box * {
+            color: white !important;
+        }
+
+        /* Button styles */
+        .buttons {
+            position: absolute;
+            top: 20px;
+        }
+
+        .buttons button {
+            background-color: #FFFFFF;
+            color: #A5A5A5;
+            width: 75px;
+            height: 25px;
+            margin-left: 75px;
+        }
     </style>
 </head>
-<body>
+<body style="background-color: lightblue;">
+
+    <!-- Banner -->
     <header class="banner">
         <h1>The Daily Acorn</h1>
     </header>
 
-<!-- slider -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Slider</title>
-  <style>
-    /* Basic reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <!-- Image Slider -->
+    <section class="container">
+        <div class="slider-wrapper">
+            <div class="slider">
+                <img id="slide-1" src="https://images.unsplash.com/photo-1656464868371-602be27fd4c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="3D rendering of an imaginary orange planet in space" />
+                <img id="slide-2" src="https://images.unsplash.com/photo-1657586640569-4a3d4577328c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="3D rendering of an imaginary green planet in space" />
+                <img id="slide-3" src="https://images.unsplash.com/photo-1656077217715-bdaeb06bd01f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="3D rendering of an imaginary blue planet in space" />
+            </div>
+            <div class="slider-nav">
+                <a href="#slide-1" class="active"></a>
+                <a href="#slide-2"></a>
+                <a href="#slide-3"></a>
+            </div>
+        </div>
+    </section>
 
-    body {
-      font-family: Arial, sans-serif;
-    }
+    <!-- Slider Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.slider');
+            const navLinks = document.querySelectorAll('.slider-nav a');
+            const slideCount = navLinks.length;
+            let currentSlide = 0;
 
-    /* Container for the slider */
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      overflow: hidden;
-      position: relative;
-    }
+            function updateSlider() {
+                const offset = -currentSlide * 100;
+                slider.style.transform = `translateX(${offset}%)`;
+                navLinks.forEach((link, index) => {
+                    link.classList.toggle('active', index === currentSlide);
+                });
+            }
 
-    /* Slider wrapper */
-    .slider-wrapper {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-    }
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slideCount;
+                updateSlider();
+            }
 
-    /* Slider */
-    .slider {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
+            navLinks.forEach((link, index) => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    currentSlide = index;
+                    updateSlider();
+                });
+            });
 
-    .slider img {
-      width: 100%;
-      display: block;
-    }
+            setInterval(nextSlide, 3000); // Change slide every 3 seconds
 
-    /* Slider navigation */
-    .slider-nav {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-    }
-
-    .slider-nav a {
-      width: 15px;
-      height: 15px;
-      background-color: #fff;
-      border-radius: 50%;
-      display: block;
-      text-indent: -9999px;
-      cursor: pointer;
-    }
-
-    .slider-nav a.active {
-      background-color: #000;
-    }
-  </style>
-</head>
-<body>
-  <section class="container">
-    <div class="slider-wrapper">
-      <div class="slider">
-        <img id="slide-1" src="https://images.unsplash.com/photo-1656464868371-602be27fd4c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="3D rendering of an imaginary orange planet in space" />
-        <img id="slide-2" src="https://images.unsplash.com/photo-1657586640569-4a3d4577328c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="3D rendering of an imaginary green planet in space" />
-        <img id="slide-3" src="https://images.unsplash.com/photo-1656077217715-bdaeb06bd01f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="3D rendering of an imaginary blue planet in space" />
-      </div>
-      <div class="slider-nav">
-        <a href="#slide-1" class="active"></a>
-        <a href="#slide-2"></a>
-        <a href="#slide-3"></a>
-      </div>
-    </div>
-  </section>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const slider = document.querySelector('.slider');
-      const navLinks = document.querySelectorAll('.slider-nav a');
-      const slideCount = navLinks.length;
-      let currentSlide = 0;
-
-      function updateSlider() {
-        const offset = -currentSlide * 100;
-        slider.style.transform = `translateX(${offset}%)`;
-        navLinks.forEach((link, index) => {
-          link.classList.toggle('active', index === currentSlide);
+            updateSlider(); // Initialize the slider position
         });
-      }
+    </script>
 
-      function nextSlide() {
-        currentSlide = (currentSlide + 1) % slideCount;
-        updateSlider();
-      }
-
-      navLinks.forEach((link, index) => {
-        link.addEventListener('click', function(event) {
-          event.preventDefault();
-          currentSlide = index;
-          updateSlider();
-        });
-      });
-
-      setInterval(nextSlide, 3000); // Change slide every 3 seconds
-
-      updateSlider(); // Initialize the slider position
-    });
-  </script>
-
-<!-- text -->
-
+    <!-- Content -->
     <div class="content">
         <h1>Exploring the Red Planet: Mars</h1>
         <h2>A Fascinating Journey into Our Celestial Neighbor</h2>
@@ -201,19 +226,22 @@
         <p>
             Robotic missions have been the cornerstone of Mars exploration. Rovers like Curiosity, Perseverance, and the upcoming 
             European Space Agency's ExoMars rover are equipped with sophisticated instruments to analyze the Martian surface and 
-            atmosphere. Artificial intelligence plays a crucial role in these missions, enabling rovers to navigate the rugged 
-            terrain autonomously, make real-time decisions, and optimize scientific experiments. The data collected by these 
-            robotic explorers not only enhances our understanding of Mars but also paves the way for future human missions.
+            subsurface. Artificial intelligence plays a crucial role in autonomous navigation, data analysis, and decision-making, 
+            enabling these robots to perform complex tasks with minimal human intervention. The synergy between human ingenuity 
+            and robotic capabilities will continue to drive our exploration efforts and unlock the secrets of Mars.
         </p>
-        <h2>Conclusion: Mars and the Future of Space Exploration</h2>
+        <h2>Conclusion</h2>
         <p>
-            Mars remains a focal point of space exploration, symbolizing the human spirit of discovery and our quest to understand 
-            the universe. The ongoing research and upcoming missions hold the promise of unlocking the secrets of the Red Planet, 
-            potentially answering profound questions about life beyond Earth. As we continue to explore Mars, we move closer to 
-            unraveling the mysteries of our solar system and forging a path for humanity's future in space.
+            Mars remains a captivating target for scientific exploration and human curiosity. The quest to understand its past, 
+            present, and potential for future habitability drives ongoing missions and research. As we push the boundaries of 
+            space exploration, Mars serves as a beacon of our determination to explore the unknown and expand our horizons. 
+            Whether it's through robotic missions, human exploration, or the search for life, Mars continues to inspire and 
+            challenge us, offering a glimpse into the possibilities that lie beyond our home planet.
         </p>
     </div>
-    <!-- all buttons -->
+
+    <!-- Buttons -->
+    
     <form method="get" action="https://neon-fiction.github.io/Lowkey/p.html">
         <button type="submit" style="background-color: #FFFFFF; color: A5A5A5; position: absolute; top: 20px; left: 400px; width: 75px; height: 25px;">Read</button>
     </form>
@@ -226,33 +254,21 @@
     <form method="get" action="https://neon-fiction.github.io/Lowkey/p.html">
         <button type="submit" style="background-color: #FFFFFF; color: A5A5A5; position: absolute; top: 20px; left: 625px; width: 75px; height: 25px;">About</button>
     </form>
-    <!-- Comment box -->
     
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Site</title>
-    <link rel="stylesheet" type="text/css" href="https://www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
-    <style>
-        /* Custom CSS to change text color to white */
-        #HCB_comment_box, #HCB_comment_box * {
-            color: white !important;
-        }
-    </style>
-</head>
-<body>
-    <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Widget</a> is loading comments...</div>
-    <script type="text/javascript" id="hcb"> 
-        /*<!--*/
-        if(!window.hcb_user){hcb_user={};} 
+    <!-- Comment Box -->
+    <div id="HCB_comment_box">
+        <a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...
+    </div>
+    <script type="text/javascript" id="hcb">
+        if(!window.hcb_user){hcb_user={};}
         (function(){
-            var s=document.createElement("script"), 
-                l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), 
-                h="https://www.htmlcommentbox.com";
+            var s=document.createElement("script"),
+            l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"),
+            h="//www.htmlcommentbox.com";
             s.setAttribute("type","text/javascript");
-            s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&opts=16798&num=10&ts=1718057330009");
+            s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&opts=48324&num=10");
             if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);
-        })(); 
-        /*-->*/ 
+        })();
     </script>
 </body>
 </html>
