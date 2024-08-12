@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        #search {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        #search:focus {
+            border-color: #007BFF;
+        }
+
+        #item-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #item-list a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #000;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #item-list a:hover {
+            background-color: #f1f1f1;
+        }
+
+        #item-list a:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search items...">
+    </div>
+    <ul id="item-list">
+        <li><a href="https://example.com/apple" target="_blank">Apple</a></li>
+        <li><a href="https://example.com/banana" target="_blank">Banana</a></li>
+        <li><a href="https://example.com/cherry" target="_blank">Cherry</a></li>
+        <li><a href="https://example.com/date" target="_blank">Date</a></li>
+        <li><a href="https://example.com/elderberry" target="_blank">Elderberry</a></li>
+    </ul>
+
+    <script>
+        function debounce(func, delay) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), delay);
+            };
+        }
+
+        const filterItems = () => {
+            const query = document.getElementById('search').value.toLowerCase();
+            const items = document.querySelectorAll('#item-list a');
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.parentElement.style.display = text.includes(query) ? '' : 'none';
+            });
+        };
+
+        document.getElementById('search').addEventListener('input', debounce(filterItems, 300));
+    </script>
+</body>
+</html>
