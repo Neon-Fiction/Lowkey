@@ -1,65 +1,147 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1MWBRVPSX5');
+</script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=400, initial-scale=1.0">
-    <title>Serach</title>
-    <body style="background-color: black;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search System</title>
     <style>
-        /* CSS styles go here */
-        body {
+        /* Basic reset */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
             font-family: Arial, sans-serif;
-            background-color: #000000;
+            background-color: #FFFFFF;
+            margin: 0;
         }
         .banner {
-            background-color: #Black; /* Banner background color */
-            color: white;              /* Banner text color */
-            text-align: left;          /* Left-align the text */
-            padding: 20px;             /* Add some padding */
+            background-color: #000000;
+            color: white;
+            text-align: left;
+            padding: 20px;
             position: relative;
-            width: 100%;               /* Full width of the viewport */
-            top: 0;                    /* Stick to the top */
-            left: 0;                   /* Align to the left */
+            width: 100%;
+            width: 200%;
+            top: 0;
+            left: 0;
         }
-        .banner h1 {
-            margin: 0;                /* Remove default margin */
-        }
-        .content {
-            margin: 20px;
-        }
-        .content h1, .content h2 {
-            text-align: left;
-        }
-        .content p {
-            margin: 20px 0;
-            text-align: left;
+@@ -50,7 +50,7 @@
             font-size: 130%;
+        }
+        .container {
+            max-width: 2200px;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slider img {
+            width: 100%;
+            display: block;
+        }
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        .slider-nav a {
+            width: 15px;
+            height: 15px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: block;
+            text-indent: -9999px;
+            cursor: pointer;
+        }
+        .slider-nav a.active {
+            background-color: #000;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        #search {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            outline: none;
+        }
+        #search:focus {
+            border-color: #007BFF;
+        }
+        #item-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        #item-list a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #000;
+            border-bottom: 1px solid #ddd;
+        }
+        #item-list a:hover {
+            background-color: #f1f1f1;
+        }
+        #item-list a:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .button-container {
+            position: relative;
+            margin-top: 20px;
+        }
+        .button-container button {
+            background-color: #FFFFFF;
+            color: #A5A5A5;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .button-container button:hover {
+            background-color: #f0f0f0;
         }
     </style>
 </head>
 <body>
     <header class="banner">
-        <h1>AstroNet<h1>
-    </header>
+        <h1>AstroNet</h1>
    <!--h -->
     <style>
         body {
             background-color: black; /* Optional: Set a dark background so white text is visible */
             font-family: Arial, sans-serif;
         }
-
         #item-list a {
             color: white;
         }
-
         #search {
             color: white;
             background-color: #555; /* Optional: Darken the search input field for better visibility */
             border: none;
             padding: 10px;
         }
-
         .button-container button {
             color: white;
             background-color: #555; /* Optional: Button background */
@@ -67,18 +149,15 @@
             padding: 10px 20px;
             cursor: pointer;
         }
-
         .button-container button:hover {
             background-color: #777; /* Optional: Change button color on hover */
         }
     </style>
 </head>
 <body>
-
     <div class="search-container">
         <input type="text" id="search" placeholder="Find telescope...">
     </div>
-
     <ul id="item-list">
         <li><a href="https://example.com/apple" target="_blank">001</a></li>
         <li><a href="https://example.com/banana" target="_blank">002</a></li>
@@ -88,14 +167,12 @@
         <li><a href="https://example.com/elderberry" target="_blank">006</a></li>
         <li><a href="https://example.com/elderberry" target="_blank">007</a></li>
     </ul>
-
     <div class="button-container">
         <button onclick="window.location.href='https://neon-fiction.github.io/Lowkey/searchbar2.html'">Read</button>
         <button onclick="window.location.href='https://neon-fiction.github.io/Lowkey/searchbar2.html'">Gallery</button>
         <button onclick="window.location.href='https://neon-fiction.github.io/Lowkey/searchbar2.html'">Learn</button>
         <button onclick="window.location.href='https://neon-fiction.github.io/Lowkey/searchbar2.html'">About</button>
     </div>
-
     <script>
         function debounce(func, delay) {
             let timeout;
@@ -104,17 +181,14 @@
                 timeout = setTimeout(() => func.apply(this, args), delay);
             };
         }
-
         const filterItems = () => {
             const query = document.getElementById('search').value.toLowerCase();
             const items = document.querySelectorAll('#item-list a');
-
             items.forEach(item => {
                 const text = item.textContent.toLowerCase();
                 item.parentElement.style.display = text.includes(query) ? '' : 'none';
             });
         };
-
         document.getElementById('search').addEventListener('input', debounce(filterItems, 300));
     </script>
 </body>
